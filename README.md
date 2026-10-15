@@ -16,7 +16,7 @@
 
 The repository includes a ready-to-deploy static web application in [`docs/`](docs/):
 
-👉 **Live Dashboard Preview**: [https://your-username.github.io/ISS_EDEN/](https://your-username.github.io/ISS_EDEN/) *(Once deployed to GitHub Pages)*
+👉 **Live Dashboard**: **[https://dr-richard-barker.github.io/ISS_EDEN/](https://dr-richard-barker.github.io/ISS_EDEN/)**
 
 ### Key Dashboard Features:
 1. **Interactive Crop Productivity Matrix**:
@@ -49,7 +49,7 @@ To publish the interactive dashboard on your GitHub account:
    git add .
    git commit -m "feat: complete FAIR EDEN ISS data repository and explorer"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/ISS_EDEN.git
+   git remote add origin https://github.com/dr-richard-barker/ISS_EDEN.git
    git push -u origin main
    ```
 2. In your GitHub repository, navigate to **Settings** &rarr; **Pages** (under *Code and automation*).

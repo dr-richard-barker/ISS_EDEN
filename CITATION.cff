@@ -5,7 +5,7 @@ abstract: "A FAIR data repository and interactive GitHub Pages visualization exp
 version: "1.0.0"
 date-released: "2026-10-14"
 license: "CC-BY-4.0"
-repository-code: "https://github.com/your-username/ISS_EDEN"
+repository-code: "https://github.com/dr-richard-barker/ISS_EDEN"
 identifiers:
   - type: doi
     value: "10.26030/8556-mr78"

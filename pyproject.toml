@@ -31,4 +31,4 @@ dependencies = [
 [project.urls]
 Homepage = "https://osdr.nasa.gov/bio/repo/data/studies/OSD-895"
 Documentation = "https://doi.org/10.3389/fpls.2020.00656"
-Repository = "https://github.com/your-username/ISS_EDEN"
+Repository = "https://github.com/dr-richard-barker/ISS_EDEN"
