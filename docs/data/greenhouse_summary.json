@@ -1,0 +1,43 @@
+{
+  "study_accession": "OSD-895",
+  "lsds_identifier": "LSDS-160",
+  "study_doi": "10.26030/8556-mr78",
+  "paper_doi": "10.3389/fpls.2020.00656",
+  "pmc_id": "PMC7264257",
+  "facility_name": "Future Exploration Greenhouse (FEG) - EDEN ISS Mobile Test Facility",
+  "operator": "Paul Zabel (DLR Institute of Space Systems)",
+  "location": "Neumayer Station III, Atka Bay, Antarctica (70\u00b040' S, 08\u00b016' W)",
+  "mission_start": "2018-02-07",
+  "mission_end": "2018-11-20",
+  "duration_days": 286,
+  "cultivation_area_m2": 12.5,
+  "total_cultivation_trays": 38,
+  "winter_over_crew_size": 10,
+  "total_fresh_edible_biomass_kg": 268.0,
+  "total_dry_inedible_biomass_kg": 11.2,
+  "area_normalized_yield_kg_m2": 27.4,
+  "mean_daily_productivity_kg_m2_d": 0.075,
+  "mean_daily_productivity_excl_pepper_kg_m2_d": 0.089,
+  "harvest_distribution_kg": {
+    "fruit_crops": 105.4,
+    "cucumber_only": 67.0,
+    "tomato_only": 50.0,
+    "lettuce": 56.4,
+    "leafy_greens": 49.1,
+    "tuber_crops": 26.8,
+    "herbs": 12.2,
+    "miscellaneous_crops": 18.4
+  },
+  "environmental_parameters": {
+    "photoperiod_hours": 17,
+    "dark_period_hours": 7,
+    "air_temperature_photoperiod_c": 21.0,
+    "air_temperature_dark_c": 19.0,
+    "relative_humidity_pct": 65.0,
+    "co2_ppm_setpoint": 1000,
+    "co2_ppm_observed_range": "1000 - 4000",
+    "lighting_technology": "Liquid-cooled LED (Heliospectra LX601 modified)",
+    "lighting_spectrum": "Blue (~450 nm) and Red (~650 nm) dominant",
+    "irrigation_technology": "Hybrid aeroponic misting (30s every 6 min) & nutrient film (NFT)"
+  }
+}

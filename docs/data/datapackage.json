@@ -1,0 +1,157 @@
+{
+  "$schema": "https://frictionlessdata.io/schemas/data-package.json",
+  "name": "eden-iss-antarctica-biomass-production",
+  "title": "Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase",
+  "description": "FAIR dataset documenting biomass yields, growth cycles, environmental set points, and nutrient solutions for 19 crop cohorts cultivated in the EDEN ISS Future Exploration Greenhouse (FEG) in Antarctica. Derived from NASA Open Science Data Repository (OSDR) study OSD-895 and published in Frontiers in Plant Science (PMC7264257).",
+  "version": "1.0.0",
+  "homepage": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-895",
+  "created": "2026-10-14T17:30:00Z",
+  "keywords": [
+    "space biology",
+    "controlled environment agriculture",
+    "space greenhouse",
+    "bioregenerative life support",
+    "EDEN ISS",
+    "NASA OSDR",
+    "Antarctica",
+    "analog research",
+    "crop biomass",
+    "FAIR data"
+  ],
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "MIT",
+      "title": "MIT License (for scripts and dashboard code)",
+      "path": "https://opensource.org/licenses/MIT"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "Paul Zabel",
+      "email": "paul.zabel@dlr.de",
+      "role": "Principal Investigator & On-site Operator",
+      "organization": "German Aerospace Center (DLR), Institute of Space Systems"
+    },
+    {
+      "title": "Conrad Zeidler",
+      "role": "Author",
+      "organization": "German Aerospace Center (DLR), Institute of Space Systems"
+    },
+    {
+      "title": "Vincent Vrakking",
+      "role": "Author",
+      "organization": "German Aerospace Center (DLR), Institute of Space Systems"
+    },
+    {
+      "title": "Matthew Dorn",
+      "role": "Author",
+      "organization": "German Aerospace Center (DLR), Institute of Space Systems"
+    },
+    {
+      "title": "Daniel Schubert",
+      "role": "Project Leader",
+      "organization": "German Aerospace Center (DLR), Institute of Space Systems"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NASA OSDR OSD-895",
+      "path": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-895"
+    },
+    {
+      "title": "Frontiers in Plant Science (PMC7264257)",
+      "path": "https://doi.org/10.3389/fpls.2020.00656"
+    }
+  ],
+  "resources": [
+    {
+      "name": "eden_iss_crops",
+      "path": "data/processed/eden_iss_crops.csv",
+      "profile": "tabular-data-resource",
+      "title": "EDEN ISS Crop Biomass & Yield Production Table",
+      "description": "Tabular records of 19 evaluated crop cohorts cultivated during the 2018 Antarctic mission, with environmental, taxonomic, and productivity metrics.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {"name": "sample_id", "type": "string", "description": "Unique OSDR assay sample identifier"},
+          {"name": "display_name", "type": "string", "description": "Standardized human-readable crop and cultivar name"},
+          {"name": "crop_category", "type": "string", "description": "Horticultural grouping (Lettuce, Leafy Greens, Herbs, Fruit Crops, Tuber Crops)"},
+          {"name": "organism", "type": "string", "description": "Linnaean binomial taxonomic species name"},
+          {"name": "ncbi_taxonomy_id", "type": "integer", "description": "NCBI Taxonomy unique identifier"},
+          {"name": "cultivar", "type": "string", "description": "Agricultural cultivar/variety name"},
+          {"name": "seed_source", "type": "string", "description": "Commercial supplier of certified seed stock"},
+          {"name": "organism_part", "type": "string", "description": "Harvested edible plant tissue (e.g. Plant Leaves, Fruit, Tubers)"},
+          {"name": "growth_medium", "type": "string", "description": "Hydroponic/aeroponic substrate material (rockwool blocks or recycled cotton mats)"},
+          {"name": "harvest_type", "type": "string", "description": "Harvest strategy: batch (whole plant removal) or spread (cut-and-come-again)"},
+          {"name": "cycles_evaluated", "type": "integer", "description": "Number of validated production cycles included in the mean evaluation"},
+          {"name": "photoperiod_hours", "type": "integer", "description": "Total photoperiod hours per 24h diurnal cycle (15h full + 2h ramping)"},
+          {"name": "dark_period_hours", "type": "integer", "description": "Dark period duration in hours"},
+          {"name": "light_intensity_umol_m2_s", "type": "string", "description": "Photosynthetic photon flux density (PPFD) measured at canopy/16cm height (µmol/m^2/s)"},
+          {"name": "temperature_photoperiod_c", "type": "number", "description": "Air temperature set point during photoperiod in degrees Celsius"},
+          {"name": "relative_humidity_pct", "type": "number", "description": "Relative humidity set point percentage"},
+          {"name": "planting_density_plants_m2", "type": "number", "description": "Planting density expressed as plants per square meter"},
+          {"name": "growth_time_days", "type": "number", "description": "Mean cultivation cycle length in days"},
+          {"name": "mean_edible_yield_kg_m2", "type": "number", "description": "Mean fresh edible biomass yield per cultivation area (kg/m^2)"},
+          {"name": "edible_yield_min_kg_m2", "type": "number", "description": "Minimum fresh edible biomass yield observed across evaluated cycles (kg/m^2)"},
+          {"name": "edible_yield_max_kg_m2", "type": "number", "description": "Maximum fresh edible biomass yield observed across evaluated cycles (kg/m^2)"},
+          {"name": "daily_edible_productivity_g_m2_day", "type": "number", "description": "Time-normalized edible fresh biomass production rate (g/m^2/day)"},
+          {"name": "edible_dw_ratio_pct", "type": "number", "description": "Lyophilized dry weight ratio of edible biomass (dry mass / fresh mass %)"},
+          {"name": "belowground_dw_ratio_pct", "type": "number", "description": "Dry weight ratio of belowground inedible root biomass (%)"},
+          {"name": "aboveground_dw_ratio_pct", "type": "number", "description": "Dry weight ratio of aboveground inedible stem/leaf biomass (%)"},
+          {"name": "aboveground_dry_biomass_g_m2", "type": "string", "description": "Dry inedible aboveground biomass production range per area (g/m^2)"},
+          {"name": "belowground_dry_biomass_g_m2", "type": "string", "description": "Dry inedible root biomass production range per area (g/m^2)"},
+          {"name": "nutrient_solution", "type": "string", "description": "Nutrient solution formula assigned: Leafy solution (Tank 1) or Fruit solution (Tank 2)"}
+        ],
+        "primaryKey": "sample_id"
+      }
+    },
+    {
+      "name": "nutrient_solutions",
+      "path": "data/processed/nutrient_solutions.csv",
+      "profile": "tabular-data-resource",
+      "title": "Nutrient Solution Chemical Formulations (Table 2)",
+      "description": "Elemental and ionic composition per 100 L bulk solution for Leafy Crop Tank 1 and Fruit Crop Tank 2.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {"name": "element_ion", "type": "string"},
+          {"name": "symbol", "type": "string"},
+          {"name": "formula", "type": "string"},
+          {"name": "unit", "type": "string"},
+          {"name": "tank1_leafy", "type": "number"},
+          {"name": "tank2_fruit_initial", "type": "number"},
+          {"name": "tank2_fruit_adjusted", "type": "number"},
+          {"name": "role", "type": "string"}
+        ]
+      }
+    },
+    {
+      "name": "space_analog_comparison",
+      "path": "data/processed/space_analog_comparison.csv",
+      "profile": "tabular-data-resource",
+      "title": "Space Analog Facility Productivity Comparison (Table 10)",
+      "description": "Comparison of daily biomass productivity rates between EDEN ISS, South Pole Food Growth Chamber, NASA BPC, Lunar Palace 1, and CEEF.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {"name": "facility", "type": "string"},
+          {"name": "location", "type": "string"},
+          {"name": "year", "type": "string"},
+          {"name": "crop_profile", "type": "string"},
+          {"name": "daily_edible_productivity_kg_m2_d", "type": "number"},
+          {"name": "daily_edible_productivity_excl_pepper_kg_m2_d", "type": "number"},
+          {"name": "reference", "type": "string"}
+        ]
+      }
+    }
+  ]
+}

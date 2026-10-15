@@ -1,0 +1,47 @@
+[
+  {
+    "facility": "EDEN ISS MTF",
+    "location": "Neumayer Station III, Antarctica",
+    "year": "2018",
+    "crop_profile": "Mixed (21% lettuce, 18% greens, 25% cucumber, 14% tomato, 10% tubers, 5% herbs, 7% misc)",
+    "daily_edible_productivity_kg_m2_d": 0.075,
+    "daily_edible_productivity_excl_pepper_kg_m2_d": 0.089,
+    "reference": "Zabel et al. (2020), Front. Plant Sci."
+  },
+  {
+    "facility": "South Pole Food Growth Chamber (SPFGC)",
+    "location": "Amundsen-Scott South Pole Station",
+    "year": "2006",
+    "crop_profile": "High cucumber & lettuce (41% cucumber, 32% lettuce, 6% herbs, 4% tomato, 17% other)",
+    "daily_edible_productivity_kg_m2_d": 0.13,
+    "daily_edible_productivity_excl_pepper_kg_m2_d": 0.13,
+    "reference": "Patterson et al. (2012), Acta Hortic."
+  },
+  {
+    "facility": "NASA Kennedy Biomass Production Chamber (BPC)",
+    "location": "KSC, Florida, USA",
+    "year": "2008",
+    "crop_profile": "Monoculture batches (Lettuce, Tomato, Wheat, Potato, Soybean)",
+    "daily_edible_productivity_kg_m2_d": 0.17,
+    "daily_edible_productivity_excl_pepper_kg_m2_d": 0.17,
+    "reference": "Wheeler et al. (2008), Adv. Space Res."
+  },
+  {
+    "facility": "Lunar Palace 1 (V-LP1)",
+    "location": "Beihang University, Beijing, China",
+    "year": "2016",
+    "crop_profile": "Bioregenerative multi-crop life support system",
+    "daily_edible_productivity_kg_m2_d": 0.068,
+    "daily_edible_productivity_excl_pepper_kg_m2_d": 0.068,
+    "reference": "Fu et al. (2016), Astrobiology"
+  },
+  {
+    "facility": "Closed Ecology Experiment Facilities (CEEF)",
+    "location": "Rokkasho, Aomori, Japan",
+    "year": "2005",
+    "crop_profile": "Human habitation closed ecology trials",
+    "daily_edible_productivity_kg_m2_d": 0.095,
+    "daily_edible_productivity_excl_pepper_kg_m2_d": 0.095,
+    "reference": "Masuda et al. (2005), Eco Eng."
+  }
+]

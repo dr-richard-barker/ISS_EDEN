@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EDEN ISS Semantic Ontology Cross-Reference Mappings",
+  "description": "Standardized semantic mappings between EDEN ISS data fields, parameters, taxa, and recognized bio-ontologies.",
+  "ontologies": {
+    "NCBITAXON": {
+      "name": "NCBI Taxonomy",
+      "prefix": "NCBITaxon",
+      "uri": "http://purl.bioontology.org/ontology/NCBITAXON/",
+      "terms": {
+        "Allium schoenoprasum": "NCBITaxon:74900",
+        "Beta vulgaris": "NCBITaxon:161934",
+        "Brassica juncea": "NCBITaxon:3707",
+        "Brassica oleracea": "NCBITaxon:3712",
+        "Brassica rapa": "NCBITaxon:3711",
+        "Cucumis sativus": "NCBITaxon:3659",
+        "Eruca vesicaria": "NCBITaxon:3714",
+        "Lactuca sativa": "NCBITaxon:4236",
+        "Ocimum basilicum": "NCBITaxon:39350",
+        "Petroselinum crispum": "NCBITaxon:40438",
+        "Raphanus sativus": "NCBITaxon:3726",
+        "Solanum lycopersicum": "NCBITaxon:4081"
+      }
+    },
+    "UO": {
+      "name": "Units of Measurement Ontology",
+      "prefix": "UO",
+      "uri": "http://purl.obolibrary.org/obo/UO_",
+      "terms": {
+        "kilogram per square meter": "UO:0000086",
+        "gram per square meter": "UO:0000082",
+        "degree Celsius": "UO:0000027",
+        "percent": "UO:0000187",
+        "day": "UO:0000033",
+        "hour": "UO:0000032",
+        "micromole per square meter per second": "UO:0000160",
+        "millisiemens per centimeter": "UO:0000264",
+        "mole": "UO:0000013",
+        "millimole": "UO:0000040"
+      }
+    },
+    "EFO": {
+      "name": "Experimental Factor Ontology",
+      "prefix": "EFO",
+      "uri": "http://www.ebi.ac.uk/efo/",
+      "terms": {
+        "growth condition design": "EFO:0001759",
+        "growth protocol": "EFO:0003789",
+        "sample treatment protocol": "EFO:0003809",
+        "light treatment": "EFO:0000727",
+        "published": "EFO:0001796"
+      }
+    },
+    "ECSO": {
+      "name": "Ecosystem Ontology",
+      "prefix": "ECSO",
+      "uri": "http://purl.dataone.org/odo/ECSO_",
+      "terms": {
+        "Plant Material Biomass": "ECSO:00001148"
+      }
+    },
+    "CHEBI": {
+      "name": "Chemical Entities of Biological Interest",
+      "prefix": "CHEBI",
+      "uri": "http://purl.obolibrary.org/obo/CHEBI_",
+      "terms": {
+        "Ammonium (NH4+)": "CHEBI:28938",
+        "Nitrate (NO3-)": "CHEBI:17632",
+        "Chloride (Cl-)": "CHEBI:17996",
+        "Sulfate (SO4 2-)": "CHEBI:16189",
+        "Calcium (Ca2+)": "CHEBI:29108",
+        "Potassium (K+)": "CHEBI:29103",
+        "Magnesium (Mg2+)": "CHEBI:18420",
+        "Iron (Fe)": "CHEBI:18248",
+        "Manganese (Mn)": "CHEBI:18291",
+        "Zinc (Zn)": "CHEBI:27363",
+        "Boron (B)": "CHEBI:27560",
+        "Copper (Cu)": "CHEBI:28694",
+        "Molybdenum (Mo)": "CHEBI:28685"
+      }
+    }
+  }
+}

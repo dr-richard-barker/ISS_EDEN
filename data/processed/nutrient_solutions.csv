@@ -1,0 +1,15 @@
+element_ion,symbol,formula,unit,tank1_leafy,tank2_fruit_initial,tank2_fruit_adjusted,role
+Ammonium (NH4+),NH4+,NH4+,mol / 100 L,0.122,0.1,0.1,Nitrogen source (vegetative growth)
+Calcium (Ca2+),Ca2+,Ca2+,mol / 100 L,0.419,0.54,0.65,Cell wall structural integrity (adjusted to prevent tomato blossom end rot)
+Potassium (K+),K+,K+,mol / 100 L,1.028,1.62,1.45,Osmoregulation and fruit enlargement
+Magnesium (Mg2+),Mg2+,Mg2+,mol / 100 L,0.135,0.24,0.24,Chlorophyll central atom
+Nitrate (NO3-),NO3-,NO3-,mol / 100 L,1.785,2.45,2.45,Primary nitrogen source
+Chloride (Cl-),Cl-,Cl-,mol / 100 L,0.068,0.068,0.068,Osmotic and stomatal regulation
+Sulfate (SO4 2-),SO4 2-,SO4 2-,mol / 100 L,0.109,0.22,0.22,"Sulfur amino acids (cysteine, methionine)"
+Phosphorus (P),P,H2PO4-,mol / 100 L,0.189,0.29,0.29,Energy transfer (ATP) and root development
+Iron (Fe),Fe,Fe-EDDHA,mmol / 100 L,3.795,3.795,3.795,Enzyme electron transport
+Manganese (Mn),Mn,Mn2+,mmol / 100 L,0.189,0.189,0.189,Photosystem II water splitting
+Zinc (Zn),Zn,Zn2+,mmol / 100 L,0.244,0.244,0.244,Auxin synthesis and enzyme activation
+Boron (B),B,BO3 3-,mmol / 100 L,2.84,2.84,2.84,Cell division and floral development
+Copper (Cu),Cu,Cu2+,mmol / 100 L,0.068,0.068,0.068,Plastocyanin in photosynthesis
+Molybdenum (Mo),Mo,MoO4 2-,mmol / 100 L,0.041,0.041,0.041,Nitrate reductase cofactor

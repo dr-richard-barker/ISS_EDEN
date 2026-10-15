@@ -1,0 +1,6 @@
+facility,location,year,crop_profile,daily_edible_productivity_kg_m2_d,daily_edible_productivity_excl_pepper_kg_m2_d,reference
+EDEN ISS MTF,"Neumayer Station III, Antarctica",2018,"Mixed (21% lettuce, 18% greens, 25% cucumber, 14% tomato, 10% tubers, 5% herbs, 7% misc)",0.075,0.089,"Zabel et al. (2020), Front. Plant Sci."
+South Pole Food Growth Chamber (SPFGC),Amundsen-Scott South Pole Station,2006,"High cucumber & lettuce (41% cucumber, 32% lettuce, 6% herbs, 4% tomato, 17% other)",0.13,0.13,"Patterson et al. (2012), Acta Hortic."
+NASA Kennedy Biomass Production Chamber (BPC),"KSC, Florida, USA",2008,"Monoculture batches (Lettuce, Tomato, Wheat, Potato, Soybean)",0.17,0.17,"Wheeler et al. (2008), Adv. Space Res."
+Lunar Palace 1 (V-LP1),"Beihang University, Beijing, China",2016,Bioregenerative multi-crop life support system,0.068,0.068,"Fu et al. (2016), Astrobiology"
+Closed Ecology Experiment Facilities (CEEF),"Rokkasho, Aomori, Japan",2005,Human habitation closed ecology trials,0.095,0.095,"Masuda et al. (2005), Eco Eng."

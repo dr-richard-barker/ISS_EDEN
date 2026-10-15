@@ -1,0 +1,142 @@
+[
+  {
+    "element_ion": "Ammonium (NH4+)",
+    "symbol": "NH4+",
+    "formula": "NH4+",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.122,
+    "tank2_fruit_initial": 0.1,
+    "tank2_fruit_adjusted": 0.1,
+    "role": "Nitrogen source (vegetative growth)"
+  },
+  {
+    "element_ion": "Calcium (Ca2+)",
+    "symbol": "Ca2+",
+    "formula": "Ca2+",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.419,
+    "tank2_fruit_initial": 0.54,
+    "tank2_fruit_adjusted": 0.65,
+    "role": "Cell wall structural integrity (adjusted to prevent tomato blossom end rot)"
+  },
+  {
+    "element_ion": "Potassium (K+)",
+    "symbol": "K+",
+    "formula": "K+",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 1.028,
+    "tank2_fruit_initial": 1.62,
+    "tank2_fruit_adjusted": 1.45,
+    "role": "Osmoregulation and fruit enlargement"
+  },
+  {
+    "element_ion": "Magnesium (Mg2+)",
+    "symbol": "Mg2+",
+    "formula": "Mg2+",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.135,
+    "tank2_fruit_initial": 0.24,
+    "tank2_fruit_adjusted": 0.24,
+    "role": "Chlorophyll central atom"
+  },
+  {
+    "element_ion": "Nitrate (NO3-)",
+    "symbol": "NO3-",
+    "formula": "NO3-",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 1.785,
+    "tank2_fruit_initial": 2.45,
+    "tank2_fruit_adjusted": 2.45,
+    "role": "Primary nitrogen source"
+  },
+  {
+    "element_ion": "Chloride (Cl-)",
+    "symbol": "Cl-",
+    "formula": "Cl-",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.068,
+    "tank2_fruit_initial": 0.068,
+    "tank2_fruit_adjusted": 0.068,
+    "role": "Osmotic and stomatal regulation"
+  },
+  {
+    "element_ion": "Sulfate (SO4 2-)",
+    "symbol": "SO4 2-",
+    "formula": "SO4 2-",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.109,
+    "tank2_fruit_initial": 0.22,
+    "tank2_fruit_adjusted": 0.22,
+    "role": "Sulfur amino acids (cysteine, methionine)"
+  },
+  {
+    "element_ion": "Phosphorus (P)",
+    "symbol": "P",
+    "formula": "H2PO4-",
+    "unit": "mol / 100 L",
+    "tank1_leafy": 0.189,
+    "tank2_fruit_initial": 0.29,
+    "tank2_fruit_adjusted": 0.29,
+    "role": "Energy transfer (ATP) and root development"
+  },
+  {
+    "element_ion": "Iron (Fe)",
+    "symbol": "Fe",
+    "formula": "Fe-EDDHA",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 3.795,
+    "tank2_fruit_initial": 3.795,
+    "tank2_fruit_adjusted": 3.795,
+    "role": "Enzyme electron transport"
+  },
+  {
+    "element_ion": "Manganese (Mn)",
+    "symbol": "Mn",
+    "formula": "Mn2+",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 0.189,
+    "tank2_fruit_initial": 0.189,
+    "tank2_fruit_adjusted": 0.189,
+    "role": "Photosystem II water splitting"
+  },
+  {
+    "element_ion": "Zinc (Zn)",
+    "symbol": "Zn",
+    "formula": "Zn2+",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 0.244,
+    "tank2_fruit_initial": 0.244,
+    "tank2_fruit_adjusted": 0.244,
+    "role": "Auxin synthesis and enzyme activation"
+  },
+  {
+    "element_ion": "Boron (B)",
+    "symbol": "B",
+    "formula": "BO3 3-",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 2.84,
+    "tank2_fruit_initial": 2.84,
+    "tank2_fruit_adjusted": 2.84,
+    "role": "Cell division and floral development"
+  },
+  {
+    "element_ion": "Copper (Cu)",
+    "symbol": "Cu",
+    "formula": "Cu2+",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 0.068,
+    "tank2_fruit_initial": 0.068,
+    "tank2_fruit_adjusted": 0.068,
+    "role": "Plastocyanin in photosynthesis"
+  },
+  {
+    "element_ion": "Molybdenum (Mo)",
+    "symbol": "Mo",
+    "formula": "MoO4 2-",
+    "unit": "mmol / 100 L",
+    "tank1_leafy": 0.041,
+    "tank2_fruit_initial": 0.041,
+    "tank2_fruit_adjusted": 0.041,
+    "role": "Nitrate reductase cofactor"
+  }
+]

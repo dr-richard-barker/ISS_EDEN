@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDEN ISS Space Greenhouse: Biomass Yields & FAIR Data Explorer</title>
+  <meta name="description" content="FAIR data repository and interactive visualization dashboard for NASA OSDR study OSD-895: Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase (PMC7264257).">
+  <meta name="keywords" content="EDEN ISS, NASA OSDR, OSD-895, Space Greenhouse, Biomass Production, Antarctica, CEA, ECLSS, FAIR Data, CoSE">
+  <meta name="theme-color" content="#004053">
+
+  <!-- Fonts: IBM Plex Sans & IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+  <!-- schema.org Dataset JSON-LD for FAIR Findability -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "name": "Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase",
+    "description": "Biomass production, cultivation telemetry, and environmental set points for 19 crop cohorts cultivated in the EDEN ISS Future Exploration Greenhouse (FEG) in Antarctica. Derived from NASA Open Science Data Repository (OSDR) study OSD-895.",
+    "identifier": [
+      "https://doi.org/10.26030/8556-mr78",
+      "https://osdr.nasa.gov/bio/repo/data/studies/OSD-895"
+    ],
+    "keywords": [
+      "space biology",
+      "controlled environment agriculture",
+      "space greenhouse",
+      "bioregenerative life support",
+      "EDEN ISS",
+      "NASA OSDR",
+      "Antarctica",
+      "crop biomass"
+    ],
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "isAccessibleForFree": true,
+    "creator": {
+      "@type": "Organization",
+      "name": "German Aerospace Center (DLR), Institute of Space Systems"
+    },
+    "citation": "https://doi.org/10.3389/fpls.2020.00656",
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv",
+        "contentUrl": "data/eden_iss_crops.csv"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "data/eden_iss_crops.json"
+      },
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "data/datapackage.json"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Top Header Navigation (No Side Navigation Panel) -->
+  <header class="cose-header">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-logo">🌱</div>
+        <div class="brand-text">
+          <h1>EDEN ISS Space Greenhouse</h1>
+          <p>NASA OSDR OSD-895 &bull; PMC7264257</p>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><span class="badge-fair">FAIR Data</span></li>
+          <li><a href="#visualizer" class="nav-link">Crops</a></li>
+          <li><a href="#experiments" class="nav-link">Experiments</a></li>
+          <li><a href="#calculator" class="nav-link">ECLSS Calculator</a></li>
+          <li><a href="#data-table" class="nav-link">Data Table</a></li>
+          <li><a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-895" target="_blank" rel="noopener" class="nav-link">NASA OSDR ↗</a></li>
+        </ul>
+
+        <!-- CoSE Light/Dark Theme Toggle -->
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <span id="themeIcon">☀️</span>
+          <span id="themeLabel">Light</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Hero / Mission Header -->
+    <section class="hero">
+      <div class="eyebrow">Antarctic Space-Analog Testbed &bull; Neumayer Station III</div>
+      <h2>Biomass Production & Controlled Environment Crop Yields</h2>
+      <p class="lede">
+        During the 2018 Antarctic winter campaign, the <strong>EDEN ISS Future Exploration Greenhouse (FEG)</strong> 
+        evaluated fresh vegetable cultivation across 12.5 m² of growing area under a single compromise climate to demonstrate 
+        safe, automated food production for human missions to the Moon and Mars.
+      </p>
+      <div class="hero-meta">
+        <span><strong>Repository:</strong> <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-895" target="_blank">NASA OSDR OSD-895</a> (LSDS-160)</span>
+        <span><strong>Publication:</strong> <a href="https://doi.org/10.3389/fpls.2020.00656" target="_blank">Zabel et al. (2020) Front. Plant Sci.</a></span>
+        <span><strong>Study DOI:</strong> <a href="https://doi.org/10.26030/8556-mr78" target="_blank">10.26030/8556-mr78</a></span>
+        <span><strong>Theme:</strong> CoSE Palette &bull; Dual CC-BY 4.0 / MIT</span>
+      </div>
+    </section>
+
+    <!-- Mission KPI Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Total Fresh Harvest</span>
+          <span class="kpi-icon">🥬</span>
+        </div>
+        <div class="kpi-value">268.0<span class="kpi-unit">kg</span></div>
+        <div class="kpi-desc">Produced over 286 mission days in Antarctica</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Cultivation Footprint</span>
+          <span class="kpi-icon">📐</span>
+        </div>
+        <div class="kpi-value">12.5<span class="kpi-unit">m²</span></div>
+        <div class="kpi-desc">38 multi-tier independently lit growing trays</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Facility Productivity</span>
+          <span class="kpi-icon">⚡</span>
+        </div>
+        <div class="kpi-value">75.0<span class="kpi-unit">g/m²/d</span></div>
+        <div class="kpi-desc">Rises to 89.0 g/m²/d excluding slow trial peppers</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-header">
+          <span class="kpi-title">Winter Crew Fed</span>
+          <span class="kpi-icon">👨‍🚀</span>
+        </div>
+        <div class="kpi-value">10<span class="kpi-unit">Crew</span></div>
+        <div class="kpi-desc">Supplied Neumayer Station III overwintering team</div>
+      </div>
+    </section>
+
+    <!-- Visualizer Section -->
+    <section id="visualizer" class="section-card">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="eyebrow">Horticultural Performance</div>
+          <h3>Interactive Crop Productivity Explorer</h3>
+          <p>Explore yield rates, growth cycle durations, and dry mass ratios across 19 evaluated crop cohorts.</p>
+        </div>
+        <div class="controls-bar">
+          <div class="pill-group">
+            <button class="filter-btn active" data-category="All">All Crops (19)</button>
+            <button class="filter-btn" data-category="Lettuce">Lettuce (4)</button>
+            <button class="filter-btn" data-category="Leafy Greens">Greens (5)</button>
+            <button class="filter-btn" data-category="Herbs">Herbs (3)</button>
+            <button class="filter-btn" data-category="Fruit Crops">Fruit (3)</button>
+            <button class="filter-btn" data-category="Tuber Crops">Tubers (3)</button>
+          </div>
+          <select id="metricSelect" class="metric-select">
+            <option value="daily_edible_productivity_g_m2_day">Daily Productivity (g/m²/day)</option>
+            <option value="mean_edible_yield_kg_m2">Fresh Yield per Batch (kg/m²)</option>
+            <option value="growth_time_days">Growth Cycle Duration (Days)</option>
+            <option value="edible_dw_ratio_pct">Dry Weight Ratio (%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="mainCropChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Experiments & Environmental Factors Grid -->
+    <section id="experiments" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+      <!-- Light Intensity Experiment -->
+      <div class="section-card" style="margin-bottom:0;">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="eyebrow">Photobiology Experiment</div>
+            <h3>Lighting Intensity (Arugula)</h3>
+            <p>Impact of PPFD: 600 µmol vs. 330 µmol/m²/s at 16 cm.</p>
+          </div>
+        </div>
+        <div style="height: 280px; position: relative;">
+          <canvas id="lightExpChart"></canvas>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem;">
+          Doubling light intensity on Arugula boosted daily productivity by <strong>49%</strong> (from 126 to 189 g/m²/day).
+        </p>
+      </div>
+
+      <!-- Bulk Nutrient Solutions -->
+      <div class="section-card" style="margin-bottom:0;">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="eyebrow">Nutrient Delivery Subsystem</div>
+            <h3>Bulk Solutions (Table 2)</h3>
+            <p>Macronutrient balance: Tank 1 (Leafy) vs. Tank 2 (Fruit).</p>
+          </div>
+        </div>
+        <div style="height: 280px; position: relative;">
+          <canvas id="nutrientChart"></canvas>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--muted); margin-top: 0.75rem;">
+          Tank 2 Ca²⁺ was increased from 0.54 to 0.65 mol/100L during the mission to eliminate tomato blossom end rot.
+        </p>
+      </div>
+    </section>
+
+    <!-- Space Analog Facility Comparison -->
+    <section class="section-card">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="eyebrow">Analog Benchmarks</div>
+          <h3>Space Analog Facility Productivity Comparison</h3>
+          <p>Comparison of EDEN ISS daily yields against other closed-loop space crop testbeds (Table 10 of Zabel et al. 2020).</p>
+        </div>
+      </div>
+      <div style="height: 300px; position: relative;">
+        <canvas id="comparisonChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Space Mission ECLSS Life-Support Calculator -->
+    <section id="calculator" class="section-card">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="eyebrow">Mission Life-Support Sizing</div>
+          <h3>ECLSS Diet & Growing Area Calculator</h3>
+          <p>Estimate the greenhouse cultivation footprint required to supply fresh bio-regenerative nutrition for crewed space exploration.</p>
+        </div>
+      </div>
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>Astronaut Crew Size</span>
+              <span id="calcCrewVal" class="value-badge">6 Astronauts</span>
+            </div>
+            <input type="range" id="calcCrew" class="calc-range" min="1" max="12" value="6" step="1">
+          </div>
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>Daily Fresh Produce Target</span>
+              <span id="calcRationVal" class="value-badge">100 g/day/person</span>
+            </div>
+            <input type="range" id="calcRation" class="calc-range" min="25" max="300" value="100" step="25">
+          </div>
+          <div class="calc-group">
+            <div class="calc-label">
+              <span>Mission Duration</span>
+              <span id="calcDaysVal" class="value-badge">500 days</span>
+            </div>
+            <input type="range" id="calcDays" class="calc-range" min="30" max="1000" value="500" step="10">
+          </div>
+          <div class="calc-group">
+            <div class="calc-label"><span>Crop Selection Strategy</span></div>
+            <select id="calcStrategy" class="metric-select">
+              <option value="mixed">Balanced EDEN ISS Diversity Mix (75 g/m²/d)</option>
+              <option value="salad_lettuce">High-Density Salad & Greens Mix (88 g/m²/d)</option>
+              <option value="greens_cucumber">High-Yield Cucumber & Fast Greens (145 g/m²/d)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-kpi-row">
+            <div class="calc-kpi-item">
+              <div class="label">Required Growing Area</div>
+              <div id="resAreaM2" class="val">8.0 m²</div>
+            </div>
+            <div class="calc-kpi-item">
+              <div class="label">Total Biomass Harvest</div>
+              <div id="resTotalKg" class="val">300 kg</div>
+            </div>
+          </div>
+          <div class="calc-kpi-row">
+            <div class="calc-kpi-item">
+              <div class="label">Daily Water Turnover</div>
+              <div id="resWaterLiters" class="val">22.4 L/d</div>
+            </div>
+            <div class="calc-kpi-item">
+              <div class="label">Inedible Root/Stem Waste</div>
+              <div id="resInedibleKg" class="val">12.6 kg</div>
+            </div>
+          </div>
+          <div id="calcInsightText" class="calc-insight">
+            Calculation updates automatically based on EDEN ISS measured harvest parameters.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Table & FAIR Export Section -->
+    <section id="data-table" class="section-card">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="eyebrow">Frictionless Tabular Data</div>
+          <h3>FAIR Dataset Explorer</h3>
+          <p id="recordCount">Showing 19 of 19 crops</p>
+        </div>
+        <div class="controls-bar">
+          <input type="text" id="tableSearch" class="search-input" placeholder="Search crops, cultivars, species...">
+          <div class="btn-group">
+            <a href="data/eden_iss_crops.csv" download class="btn btn-primary">⬇ CSV</a>
+            <a href="data/eden_iss_crops.json" download class="btn">⬇ JSON</a>
+            <a href="data/datapackage.json" download class="btn">⬇ Data Package</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th data-col="display_name">Crop & Cultivar ↕</th>
+              <th data-col="crop_category">Category ↕</th>
+              <th data-col="cultivar">Variety ↕</th>
+              <th data-col="harvest_type">Harvest ↕</th>
+              <th data-col="daily_edible_productivity_g_m2_day" style="text-align:right;">Productivity (g/m²/d) ↕</th>
+              <th data-col="mean_edible_yield_kg_m2" style="text-align:right;">Fresh Yield (kg/m²) ↕</th>
+              <th data-col="growth_time_days" style="text-align:right;">Cycle (Days) ↕</th>
+              <th data-col="edible_dw_ratio_pct" style="text-align:right;">Dry Wt % ↕</th>
+              <th data-col="light_intensity_umol_m2_s" style="text-align:center;">Light ↕</th>
+              <th data-col="seed_source">Seed Source ↕</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Academic Citation & FAIR Metadata Box -->
+    <section class="section-card">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="eyebrow">Attribution & Citation</div>
+          <h3>Academic Attribution</h3>
+          <p>Please cite both the primary Frontiers research article and the NASA Open Science Data Repository record.</p>
+        </div>
+        <button id="copyCitationBtn" class="copy-btn">Copy BibTeX</button>
+      </div>
+      <div class="citation-box">
+        <pre id="bibtexCode">@article{zabel2020biomass,
+  title={Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase},
+  author={Zabel, Paul and Zeidler, Conrad and Vrakking, Vincent and Dorn, Matthew and Schubert, Daniel},
+  journal={Frontiers in Plant Science},
+  volume={11},
+  pages={656},
+  year={2020},
+  publisher={Frontiers},
+  doi={10.3389/fpls.2020.00656},
+  pmcid={PMC7264257}
+}
+
+@dataset{osd895_eden_iss,
+  title={OSD-895: Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase},
+  author={Zabel, Paul and Zeidler, Conrad and Vrakking, Vincent and Dorn, Matthew and Schubert, Daniel},
+  year={2020},
+  publisher={NASA Open Science Data Repository},
+  doi={10.26030/8556-mr78}
+}</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <strong>EDEN ISS FAIR Data Explorer</strong> &bull; Styled with CoSE Design Palette &bull; Data from <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-895" target="_blank">NASA OSDR OSD-895</a> 
+      and <a href="https://doi.org/10.3389/fpls.2020.00656" target="_blank">Frontiers in Plant Science (PMC7264257)</a>.<br>
+      Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> (Data) and <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> (Code).
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

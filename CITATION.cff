@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this dataset, web dashboard, or code in your research, please cite the primary literature and the NASA OSDR dataset as follows:"
+title: "Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase (FAIR Data & Explorer)"
+abstract: "A FAIR data repository and interactive GitHub Pages visualization explorer for the EDEN ISS Antarctic Space Greenhouse crop biomass production dataset (NASA OSDR OSD-895 / LSDS-160)."
+version: "1.0.0"
+date-released: "2026-10-14"
+license: "CC-BY-4.0"
+repository-code: "https://github.com/your-username/ISS_EDEN"
+identifiers:
+  - type: doi
+    value: "10.26030/8556-mr78"
+    description: "NASA OSDR OSD-895 Dataset DOI"
+  - type: doi
+    value: "10.3389/fpls.2020.00656"
+    description: "Frontiers in Plant Science Publication DOI"
+authors:
+  - family-names: "Zabel"
+    given-names: "Paul"
+    affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    orcid: "https://orcid.org/0000-0002-3932-8411"
+  - family-names: "Zeidler"
+    given-names: "Conrad"
+    affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+  - family-names: "Vrakking"
+    given-names: "Vincent"
+    affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+  - family-names: "Dorn"
+    given-names: "Matthew"
+    affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+  - family-names: "Schubert"
+    given-names: "Daniel"
+    affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Zabel"
+      given-names: "Paul"
+    - family-names: "Zeidler"
+      given-names: "Conrad"
+    - family-names: "Vrakking"
+      given-names: "Vincent"
+    - family-names: "Dorn"
+      given-names: "Matthew"
+    - family-names: "Schubert"
+      given-names: "Daniel"
+  title: "Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase"
+  journal: "Frontiers in Plant Science"
+  volume: 11
+  pages: 656
+  year: 2020
+  doi: "10.3389/fpls.2020.00656"
