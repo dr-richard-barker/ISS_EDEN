@@ -1,0 +1,91 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "eden-iss-biomass-explorer",
+  "identifier": "OSD-895",
+  "version": "1.0.0",
+  "description": "FAIR data repository and interactive GitHub Pages visualization explorer for the EDEN ISS Antarctic Space Greenhouse crop biomass production dataset (NASA OSDR OSD-895 / PMC7264257).",
+  "license": "https://spdx.org/licenses/MIT",
+  "codeRepository": "https://github.com/dr-richard-barker/ISS_EDEN",
+  "url": "https://dr-richard-barker.github.io/ISS_EDEN/",
+  "dateCreated": "2026-10-14",
+  "dateModified": "2026-10-16",
+  "keywords": [
+    "space biology",
+    "controlled environment agriculture",
+    "space greenhouse",
+    "bioregenerative life support",
+    "EDEN ISS",
+    "NASA OSDR",
+    "Antarctica",
+    "crop biomass",
+    "FAIR data",
+    "CoSE"
+  ],
+  "programmingLanguage": [
+    "Python",
+    "JavaScript",
+    "HTML",
+    "CSS"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Richard",
+      "familyName": "Barker",
+      "@id": "https://orcid.org/0000-0001-5681-9857"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Zabel",
+      "@id": "https://orcid.org/0000-0002-3932-8411",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "German Aerospace Center (DLR), Institute of Space Systems"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Conrad",
+      "familyName": "Zeidler",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "German Aerospace Center (DLR), Institute of Space Systems"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Vincent",
+      "familyName": "Vrakking",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "German Aerospace Center (DLR), Institute of Space Systems"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Matthew",
+      "familyName": "Dorn",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "German Aerospace Center (DLR), Institute of Space Systems"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Daniel",
+      "familyName": "Schubert",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "German Aerospace Center (DLR), Institute of Space Systems"
+      }
+    }
+  ],
+  "citation": [
+    "https://doi.org/10.3389/fpls.2020.00656",
+    "https://doi.org/10.26030/8556-mr78"
+  ]
+}

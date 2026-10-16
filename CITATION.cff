@@ -14,6 +14,9 @@ identifiers:
     value: "10.3389/fpls.2020.00656"
     description: "Frontiers in Plant Science Publication DOI"
 authors:
+  - family-names: "Barker"
+    given-names: "Richard"
+    orcid: "https://orcid.org/0000-0001-5681-9857"
   - family-names: "Zabel"
     given-names: "Paul"
     affiliation: "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"

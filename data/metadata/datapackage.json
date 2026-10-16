@@ -32,6 +32,11 @@
   ],
   "contributors": [
     {
+      "title": "Richard Barker",
+      "role": "Repository Curator & Astrobotany Bioinformatician",
+      "orcid": "https://orcid.org/0000-0001-5681-9857"
+    },
+    {
       "title": "Paul Zabel",
       "email": "paul.zabel@dlr.de",
       "role": "Principal Investigator & On-site Operator",

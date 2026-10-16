@@ -1,0 +1,29 @@
+{
+  "standard": "ABAI-QC-2026",
+  "repository": "ISS_EDEN",
+  "timestamp": "2026-10-16T14:15:14.509965+00:00",
+  "stages": {
+    "blocklist_sweep": {
+      "passed": true,
+      "files_scanned": 34
+    },
+    "fair_metadata": {
+      "passed": true,
+      "orcid_verified": "0000-0001-5681-9857"
+    },
+    "numerical_traceability": {
+      "passed": true,
+      "crops_evaluated": 19
+    },
+    "cose_theme": {
+      "passed": true
+    },
+    "git_cleanliness": {
+      "passed": true
+    }
+  },
+  "verdict": "clear",
+  "digest": "6905cce18a919fe624776f456b9c19d47bbb47d947effe8be96274544fabcc0c",
+  "files": 33,
+  "head": "31bfe3d2364930551ca695b22741996e0ca57949"
+}

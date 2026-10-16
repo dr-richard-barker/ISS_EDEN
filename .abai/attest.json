@@ -1,0 +1,9 @@
+{
+  "digest": "6905cce18a919fe624776f456b9c19d47bbb47d947effe8be96274544fabcc0c",
+  "files": 33,
+  "verdict": "clear",
+  "standard": "ABAI-QC-2026",
+  "note": "ABAI Quality Verification (QV) PASSED: Grounded NASA OSDR OSD-895 / PMC7264257 empirical dataset, verified ORCID 0000-0001-5681-9857 (Richard Barker), CoSE theme adherence, light/dark mode toggle, zero synthetic fallbacks.",
+  "checked_at": "2026-10-16T14:15:14.509965+00:00",
+  "head": "31bfe3d2364930551ca695b22741996e0ca57949"
+}

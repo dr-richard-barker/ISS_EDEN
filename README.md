@@ -7,6 +7,7 @@
 [![PMC](https://img.shields.io/badge/PMC-PMC7264257-purple.svg)](https://pmc.ncbi.nlm.nih.gov/articles/PMC7264257/)
 [![License: CC-BY 4.0](https://img.shields.io/badge/Data%20License-CC--BY--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![ABAI QC Standard](https://img.shields.io/badge/ABAI%20QC-VERDICT%20CLEAR-059669.svg)](.abai/attest.json)
 
 > An open, organized, and **FAIR (Findable, Accessible, Interoperable, Reusable)** data repository and interactive **GitHub Pages data explorer** for crop biomass yields, growth parameters, and environmental profiles from the **EDEN ISS Antarctic Space Greenhouse** (Neumayer Station III, Antarctica).
 
@@ -57,7 +58,7 @@ To publish the interactive dashboard on your GitHub account:
    - **Source**: Select `Deploy from a branch`
    - **Branch**: Select `main` and folder `/docs`
    - Click **Save**
-4. Within 1–2 minutes, your dashboard will be live at `https://<your-username>.github.io/ISS_EDEN/`!
+4. Within 1–2 minutes, your dashboard will be live at `https://dr-richard-barker.github.io/ISS_EDEN/`!
 *(Alternatively, you can enable GitHub Actions deployment via `.github/workflows/deploy-pages.yml`).*
 
 ---

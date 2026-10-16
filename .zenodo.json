@@ -1,0 +1,58 @@
+{
+  "title": "Biomass Production of the EDEN ISS Space Greenhouse in Antarctica During the 2018 Experiment Phase (FAIR Data & Explorer)",
+  "description": "FAIR data repository and interactive GitHub Pages visualization explorer for the EDEN ISS Antarctic Space Greenhouse crop biomass production dataset (NASA OSDR OSD-895 / PMC7264257).",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "creators": [
+    {
+      "name": "Barker, Richard",
+      "orcid": "0000-0001-5681-9857"
+    },
+    {
+      "name": "Zabel, Paul",
+      "orcid": "0000-0002-3932-8411",
+      "affiliation": "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    },
+    {
+      "name": "Zeidler, Conrad",
+      "affiliation": "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    },
+    {
+      "name": "Vrakking, Vincent",
+      "affiliation": "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    },
+    {
+      "name": "Dorn, Matthew",
+      "affiliation": "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    },
+    {
+      "name": "Schubert, Daniel",
+      "affiliation": "German Aerospace Center (DLR), Institute of Space Systems, Bremen, Germany"
+    }
+  ],
+  "keywords": [
+    "space biology",
+    "controlled environment agriculture",
+    "space greenhouse",
+    "bioregenerative life support",
+    "EDEN ISS",
+    "NASA OSDR",
+    "Antarctica",
+    "crop biomass",
+    "FAIR data",
+    "CoSE"
+  ],
+  "related_identifiers": [
+    {
+      "scheme": "doi",
+      "identifier": "10.3389/fpls.2020.00656",
+      "relation": "isSupplementTo"
+    },
+    {
+      "scheme": "doi",
+      "identifier": "10.26030/8556-mr78",
+      "relation": "isDerivedFrom"
+    }
+  ]
+}
