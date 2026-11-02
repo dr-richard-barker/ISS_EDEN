@@ -1,7 +1,7 @@
 {
   "standard": "ABAI-QC-2026",
   "repository": "ISS_EDEN",
-  "timestamp": "2026-10-16T14:15:14.509965+00:00",
+  "timestamp": "2026-11-02T22:31:27.328130+00:00",
   "stages": {
     "blocklist_sweep": {
       "passed": true,
@@ -23,7 +23,7 @@
     }
   },
   "verdict": "clear",
-  "digest": "6905cce18a919fe624776f456b9c19d47bbb47d947effe8be96274544fabcc0c",
+  "digest": "fc33d56167a501ffa0bbac7b93ea3b30c0cb1e345cddad2fd91f18ce3cc28065",
   "files": 33,
-  "head": "31bfe3d2364930551ca695b22741996e0ca57949"
+  "head": "4264a0094b0c80d7720f1c86eb3087972ff07460"
 }

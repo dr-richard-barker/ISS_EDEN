@@ -3,7 +3,7 @@
 process_data.py
 Processes raw NASA OSDR OSD-895 JSON metadata and extracts tidy, FAIR-compliant datasets:
 - data/processed/eden_iss_crops.csv
-- data/processed/eden_iss_crops.parquet
+- data/processed/eden_iss_crops.parquet (only if pandas and pyarrow are installed)
 - data/processed/eden_iss_crops.json
 - data/processed/nutrient_solutions.csv
 - data/processed/space_analog_comparison.csv
@@ -96,6 +96,58 @@ def get_display_name(sample_name, cultivar, crop_category):
     if "waldmanns" in sample_name.lower():
         return "Lettuce (Waldmann's Green)"
     return f"{crop_category} ({cultivar})"
+
+# Nutrient rows: display label, symbol, formula and role. The values themselves
+# are read from the raw OSDR record below, never typed in.
+NUTRIENT_ROWS = [
+    ("ammonium", "Ammonium (NH4+)", "NH4+", "NH4+", "Nitrogen source (vegetative growth)"),
+    ("calcium", "Calcium (Ca2+)", "Ca2+", "Ca2+", "Cell wall structural integrity (raised mid-season in the fruit tank after a calcium deficit on tomato, most likely from a poor K:Ca ratio)"),
+    ("potassium", "Potassium (K+)", "K+", "K+", "Osmoregulation and fruit enlargement (lowered mid-season in the fruit tank to correct the K:Ca ratio)"),
+    ("magnesium", "Magnesium (Mg2+)", "Mg2+", "Mg2+", "Chlorophyll central atom"),
+    ("nitrate", "Nitrate (NO3-)", "NO3-", "NO3-", "Primary nitrogen source"),
+    ("chloride", "Chloride (Cl-)", "Cl-", "Cl-", "Osmotic and stomatal regulation"),
+    ("sulfate", "Sulfate (SO4 2-)", "SO4 2-", "SO4 2-", "Sulfur amino acids (cysteine, methionine)"),
+    ("phosphorus", "Phosphorus (P)", "P", "H2PO4-", "Energy transfer (ATP) and root development"),
+    ("iron", "Iron (Fe)", "Fe", "Fe-EDDHA", "Enzyme electron transport"),
+    ("manganese", "Manganese (Mn)", "Mn", "Mn2+", "Photosystem II water splitting"),
+    ("zinc", "Zinc (Zn)", "Zn", "Zn2+", "Auxin synthesis and enzyme activation"),
+    ("boron", "Boron (B)", "B", "BO3 3-", "Cell division and floral development"),
+    ("copper", "Copper (Cu)", "Cu", "Cu2+", "Plastocyanin in photosynthesis"),
+    ("molybdenum", "Molybdenum (Mo)", "Mo", "MoO4 2-", "Nitrate reductase cofactor"),
+]
+UNIT_LABEL = {"mole": "mol / 100 L", "millimole": "mmol / 100 L"}
+
+def split_followed(value):
+    """'0.597 followed by 0.711' -> (0.597, 0.711); a plain number -> (v, v)."""
+    if isinstance(value, (int, float)):
+        return float(value), float(value)
+    parts = [float(x) for x in re.findall(r"[0-9]*\.?[0-9]+", str(value))]
+    if not parts:
+        return None, None
+    return parts[0], parts[-1]
+
+def extract_nutrients(samples):
+    """Read both EDEN ISS solutions (Zabel et al. 2020, Table 2) from the sample
+    parameter values in the raw record, keyed by the nutrient-treatment factor."""
+    recipes = {}
+    for sample_obj in samples.values():
+        study_sec = sample_obj.get("metadata", {}).get("study", {})
+        solution = clean_val(study_sec.get("factor value", {}).get("nutrient treatment"))
+        pv = study_sec.get("parameter value", {})
+        if solution and solution not in recipes and "ammonium" in pv:
+            recipes[solution] = pv
+    leafy, fruit = recipes.get("Leafy solution"), recipes.get("Fruit solution")
+    if not leafy or not fruit:
+        sys.exit("process_data: could not find both nutrient solutions in the raw record")
+    rows = []
+    for key, label, symbol, formula, role in NUTRIENT_ROWS:
+        l0, _ = split_followed(leafy[key]["#"])
+        f0, f1 = split_followed(fruit[key]["#"])
+        rows.append({"element_ion": label, "symbol": symbol, "formula": formula,
+                     "unit": UNIT_LABEL.get(leafy[key].get("unit"), leafy[key].get("unit")),
+                     "tank1_leafy": l0, "tank2_fruit_initial": f0, "tank2_fruit_adjusted": f1,
+                     "role": role})
+    return rows
 
 def process():
     os.makedirs(PROCESSED_DIR, exist_ok=True)
@@ -227,23 +279,10 @@ def process():
     except ImportError:
         print("Note: pandas/pyarrow not installed in environment; skipping parquet conversion.")
         
-    # Build nutrient_solutions.csv (Table 2 from Zabel et al. 2020)
-    nutrients = [
-        {"element_ion": "Ammonium (NH4+)", "symbol": "NH4+", "formula": "NH4+", "unit": "mol / 100 L", "tank1_leafy": 0.122, "tank2_fruit_initial": 0.100, "tank2_fruit_adjusted": 0.100, "role": "Nitrogen source (vegetative growth)"},
-        {"element_ion": "Calcium (Ca2+)", "symbol": "Ca2+", "formula": "Ca2+", "unit": "mol / 100 L", "tank1_leafy": 0.419, "tank2_fruit_initial": 0.540, "tank2_fruit_adjusted": 0.650, "role": "Cell wall structural integrity (adjusted to prevent tomato blossom end rot)"},
-        {"element_ion": "Potassium (K+)", "symbol": "K+", "formula": "K+", "unit": "mol / 100 L", "tank1_leafy": 1.028, "tank2_fruit_initial": 1.620, "tank2_fruit_adjusted": 1.450, "role": "Osmoregulation and fruit enlargement"},
-        {"element_ion": "Magnesium (Mg2+)", "symbol": "Mg2+", "formula": "Mg2+", "unit": "mol / 100 L", "tank1_leafy": 0.135, "tank2_fruit_initial": 0.240, "tank2_fruit_adjusted": 0.240, "role": "Chlorophyll central atom"},
-        {"element_ion": "Nitrate (NO3-)", "symbol": "NO3-", "formula": "NO3-", "unit": "mol / 100 L", "tank1_leafy": 1.785, "tank2_fruit_initial": 2.450, "tank2_fruit_adjusted": 2.450, "role": "Primary nitrogen source"},
-        {"element_ion": "Chloride (Cl-)", "symbol": "Cl-", "formula": "Cl-", "unit": "mol / 100 L", "tank1_leafy": 0.068, "tank2_fruit_initial": 0.068, "tank2_fruit_adjusted": 0.068, "role": "Osmotic and stomatal regulation"},
-        {"element_ion": "Sulfate (SO4 2-)", "symbol": "SO4 2-", "formula": "SO4 2-", "unit": "mol / 100 L", "tank1_leafy": 0.109, "tank2_fruit_initial": 0.220, "tank2_fruit_adjusted": 0.220, "role": "Sulfur amino acids (cysteine, methionine)"},
-        {"element_ion": "Phosphorus (P)", "symbol": "P", "formula": "H2PO4-", "unit": "mol / 100 L", "tank1_leafy": 0.189, "tank2_fruit_initial": 0.290, "tank2_fruit_adjusted": 0.290, "role": "Energy transfer (ATP) and root development"},
-        {"element_ion": "Iron (Fe)", "symbol": "Fe", "formula": "Fe-EDDHA", "unit": "mmol / 100 L", "tank1_leafy": 3.795, "tank2_fruit_initial": 3.795, "tank2_fruit_adjusted": 3.795, "role": "Enzyme electron transport"},
-        {"element_ion": "Manganese (Mn)", "symbol": "Mn", "formula": "Mn2+", "unit": "mmol / 100 L", "tank1_leafy": 0.189, "tank2_fruit_initial": 0.189, "tank2_fruit_adjusted": 0.189, "role": "Photosystem II water splitting"},
-        {"element_ion": "Zinc (Zn)", "symbol": "Zn", "formula": "Zn2+", "unit": "mmol / 100 L", "tank1_leafy": 0.244, "tank2_fruit_initial": 0.244, "tank2_fruit_adjusted": 0.244, "role": "Auxin synthesis and enzyme activation"},
-        {"element_ion": "Boron (B)", "symbol": "B", "formula": "BO3 3-", "unit": "mmol / 100 L", "tank1_leafy": 2.840, "tank2_fruit_initial": 2.840, "tank2_fruit_adjusted": 2.840, "role": "Cell division and floral development"},
-        {"element_ion": "Copper (Cu)", "symbol": "Cu", "formula": "Cu2+", "unit": "mmol / 100 L", "tank1_leafy": 0.068, "tank2_fruit_initial": 0.068, "tank2_fruit_adjusted": 0.068, "role": "Plastocyanin in photosynthesis"},
-        {"element_ion": "Molybdenum (Mo)", "symbol": "Mo", "formula": "MoO4 2-", "unit": "mmol / 100 L", "tank1_leafy": 0.041, "tank2_fruit_initial": 0.041, "tank2_fruit_adjusted": 0.041, "role": "Nitrate reductase cofactor"}
-    ]
+    # Build nutrient_solutions.csv (Table 2 of Zabel et al. 2020), read from the
+    # raw OSDR record. An earlier hand-typed table had the fruit-tank column wrong
+    # and copied the leafy micronutrients into it.
+    nutrients = extract_nutrients(samples)
     nutrient_csv = os.path.join(PROCESSED_DIR, "nutrient_solutions.csv")
     with open(nutrient_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(nutrients[0].keys()))
@@ -295,19 +334,31 @@ def process():
         "winter_over_crew_size": 10,
         "total_fresh_edible_biomass_kg": 268.0,
         "total_dry_inedible_biomass_kg": 11.2,
-        "area_normalized_yield_kg_m2": 27.4,
+        "season_yield_kg_m2": 21.44,
+        "annualized_yield_kg_m2_per_year": 27.4,
         "mean_daily_productivity_kg_m2_d": 0.075,
         "mean_daily_productivity_excl_pepper_kg_m2_d": 0.089,
-        "harvest_distribution_kg": {
+        "yield_note": "21.44 kg/m2 is the measured 286-day season (268 kg / 12.5 m2, paper Discussion); 27.4 kg/m2 is the abstract's annualized figure (0.075 kg/m2/d x 365).",
+        "harvest_by_category_kg": {
             "fruit_crops": 105.4,
-            "cucumber_only": 67.0,
-            "tomato_only": 50.0,
             "lettuce": 56.4,
             "leafy_greens": 49.1,
             "tuber_crops": 26.8,
             "herbs": 12.2,
-            "miscellaneous_crops": 18.4
+            "miscellaneous_crops": 18.4,
+            "source": "Zabel et al. 2020, Results (Overview); sums to 268.3 kg"
         },
+        "harvest_by_crop_kg": {
+            "cucumber": 67,
+            "lettuce": 56,
+            "leafy_greens": 49,
+            "tomato": 50,
+            "herbs": 12,
+            "radish": 8,
+            "kohlrabi": 19,
+            "source": "Zabel et al. 2020, Abstract and OSD-895 study description; rounded, sums to 261 kg"
+        },
+        "harvest_note": "The paper's two breakdowns do not reconcile: the Abstract's cucumber (67 kg) and tomato (50 kg) total 117 kg, while the Results give 105.4 kg for all fruit crops. Both are reproduced as published; neither is corrected here.",
         "environmental_parameters": {
             "photoperiod_hours": 17,
             "dark_period_hours": 7,

@@ -84,7 +84,7 @@ The **Future Exploration Greenhouse (FEG)** of the EDEN ISS Mobile Test Facility
 | FAIR Pillar | Implementation | Location in Repository |
 | :--- | :--- | :--- |
 | **Findable (F)** | • Global DOIs documented (`10.26030/8556-mr78`, `10.3389/fpls.2020.00656`)<br>• Frictionless `datapackage.json`<br>• Embedded `schema.org` Dataset in JSON-LD<br>• Machine-readable `CITATION.cff` | [`data/metadata/datapackage.json`](data/metadata/datapackage.json)<br>[`docs/index.html`](docs/index.html)<br>[`CITATION.cff`](CITATION.cff) |
-| **Accessible (A)** | • Open protocols (HTTPS, Git)<br>• Tidy CSV, Parquet, and JSON formats without proprietary barriers<br>• Static browser-based visualization (no database or server required) | [`data/processed/`](data/processed/)<br>[`docs/`](docs/) |
+| **Accessible (A)** | • Open protocols (HTTPS, Git)<br>• Tidy CSV and JSON formats without proprietary barriers (Parquet too, when `pandas` and `pyarrow` are installed)<br>• Static browser-based visualization (no database or server required) | [`data/processed/`](data/processed/)<br>[`docs/`](docs/) |
 | **Interoperable (I)** | • Ontologies mapped: NCBI Taxonomy (`NCBITaxon`), Unit Ontology (`UO`), Experimental Factor Ontology (`EFO`), ChEBI, and ECSO<br>• Schema aligned with NASA GeneLab/OSDR standards | [`data/metadata/ontologies.json`](data/metadata/ontologies.json)<br>[`data/data_dictionary.md`](data/data_dictionary.md) |
 | **Reusable (R)** | • Unambiguous Open Science Dual Licensing: CC-BY 4.0 (Data) + MIT (Software)<br>• Full Data Dictionary with protocols and units<br>• Automated, reproducible ETL pipeline | [`LICENSE`](LICENSE)<br>[`data/data_dictionary.md`](data/data_dictionary.md)<br>[`scripts/process_data.py`](scripts/process_data.py) |
 

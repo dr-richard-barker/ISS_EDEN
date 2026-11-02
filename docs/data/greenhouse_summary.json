@@ -15,19 +15,31 @@
   "winter_over_crew_size": 10,
   "total_fresh_edible_biomass_kg": 268.0,
   "total_dry_inedible_biomass_kg": 11.2,
-  "area_normalized_yield_kg_m2": 27.4,
+  "season_yield_kg_m2": 21.44,
+  "annualized_yield_kg_m2_per_year": 27.4,
   "mean_daily_productivity_kg_m2_d": 0.075,
   "mean_daily_productivity_excl_pepper_kg_m2_d": 0.089,
-  "harvest_distribution_kg": {
+  "yield_note": "21.44 kg/m2 is the measured 286-day season (268 kg / 12.5 m2, paper Discussion); 27.4 kg/m2 is the abstract's annualized figure (0.075 kg/m2/d x 365).",
+  "harvest_by_category_kg": {
     "fruit_crops": 105.4,
-    "cucumber_only": 67.0,
-    "tomato_only": 50.0,
     "lettuce": 56.4,
     "leafy_greens": 49.1,
     "tuber_crops": 26.8,
     "herbs": 12.2,
-    "miscellaneous_crops": 18.4
+    "miscellaneous_crops": 18.4,
+    "source": "Zabel et al. 2020, Results (Overview); sums to 268.3 kg"
   },
+  "harvest_by_crop_kg": {
+    "cucumber": 67,
+    "lettuce": 56,
+    "leafy_greens": 49,
+    "tomato": 50,
+    "herbs": 12,
+    "radish": 8,
+    "kohlrabi": 19,
+    "source": "Zabel et al. 2020, Abstract and OSD-895 study description; rounded, sums to 261 kg"
+  },
+  "harvest_note": "The paper's two breakdowns do not reconcile: the Abstract's cucumber (67 kg) and tomato (50 kg) total 117 kg, while the Results give 105.4 kg for all fruit crops. Both are reproduced as published; neither is corrected here.",
   "environmental_parameters": {
     "photoperiod_hours": 17,
     "dark_period_hours": 7,

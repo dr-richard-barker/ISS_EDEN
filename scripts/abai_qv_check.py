@@ -36,6 +36,81 @@ BLOCKLIST_PATTERNS = [
     r'TODO\(abai',
 ]
 
+def _split_followed(value):
+    """'0.597 followed by 0.711' -> (0.597, 0.711); a plain number -> (v, v)."""
+    if isinstance(value, (int, float)):
+        return float(value), float(value)
+    parts = [float(x) for x in re.findall(r"[0-9]*\.?[0-9]+", str(value))]
+    return (parts[0], parts[-1]) if parts else (None, None)
+
+
+def verify_against_raw(crop_rows, summary) -> list:
+    """Compare the processed tables with the raw OSDR record. Returns a list of
+    human-readable mismatches; empty when everything agrees."""
+    import csv
+    problems = []
+    raw = json.loads((ROOT / "data" / "raw" / "OSD-895_metadata.json").read_text(encoding="utf-8"))
+    assay = "OSD-895_germination-and-growth-assesment_plant-material-biomass_ECSO"
+    samples = raw["OSD-895"]["assays"][assay]["samples"]
+
+    def val(d, k):
+        v = d.get(k)
+        return v.get("#") if isinstance(v, dict) else v
+
+    # crop cohorts: yield, cycle length and light, sample by sample
+    by_id = {r["sample_id"]: r for r in crop_rows}
+    for sid, so in samples.items():
+        meta = so.get("metadata", {})
+        spv = meta.get("study", {}).get("parameter value", {})
+        apv = meta.get("assay", {}).get("parameter value", {})
+        row = by_id.get(sid)
+        if row is None:
+            problems.append(f"crop table is missing sample {sid}")
+            continue
+        for field, raw_v in (("mean_edible_yield_kg_m2", val(apv, "mean edible freshweight")),
+                             ("growth_time_days", val(spv, "mean growth time"))):
+            if raw_v in (None, "Not Applicable"):
+                continue
+            got = float(row[field]) if row[field] not in ("", None) else None
+            want = round(float(raw_v), 1) if field == "growth_time_days" else float(raw_v)
+            if got is None or abs(got - want) > 1e-6:
+                problems.append(f"{sid}: {field} is {row[field]}, raw record says {raw_v}")
+
+    # nutrient solutions: both tanks, every ion, initial and adjusted
+    recipes = {}
+    for so in samples.values():
+        st = so.get("metadata", {}).get("study", {})
+        sol = val(st.get("factor value", {}), "nutrient treatment")
+        if sol and sol not in recipes and "ammonium" in st.get("parameter value", {}):
+            recipes[sol] = st["parameter value"]
+    with open(ROOT / "data" / "processed" / "nutrient_solutions.csv", encoding="utf-8") as f:
+        nutrients = list(csv.DictReader(f))
+    if "Leafy solution" not in recipes or "Fruit solution" not in recipes:
+        problems.append("raw record: could not find both nutrient solutions")
+    else:
+        names = ["ammonium", "calcium", "potassium", "magnesium", "nitrate", "chloride", "sulfate",
+                 "phosphorus", "iron", "manganese", "zinc", "boron", "copper", "molybdenum"]
+        if len(nutrients) != len(names):
+            problems.append(f"nutrient table has {len(nutrients)} rows, expected {len(names)}")
+        for name, row in zip(names, nutrients):
+            l0, _ = _split_followed(val(recipes["Leafy solution"], name))
+            f0, f1 = _split_followed(val(recipes["Fruit solution"], name))
+            for col, want in (("tank1_leafy", l0), ("tank2_fruit_initial", f0), ("tank2_fruit_adjusted", f1)):
+                if abs(float(row[col]) - want) > 1e-6:
+                    problems.append(f"nutrients: {row['element_ion']} {col} is {row[col]}, raw record says {want}")
+
+    # harvest summary: each published breakdown must add up to what it claims
+    cat = summary.get("harvest_by_category_kg", {})
+    if abs(sum(v for k, v in cat.items() if k != "source") - 268.3) > 0.05:
+        problems.append("summary: harvest_by_category_kg does not sum to the paper's 268.3 kg")
+    crop = summary.get("harvest_by_crop_kg", {})
+    if abs(sum(v for k, v in crop.items() if k != "source") - 261) > 0.5:
+        problems.append("summary: harvest_by_crop_kg does not sum to the abstract's 261 kg")
+    if abs(summary.get("season_yield_kg_m2", 0) - round(268.0 / 12.5, 2)) > 0.01:
+        problems.append("summary: season_yield_kg_m2 is not 268 kg / 12.5 m2")
+    return problems
+
+
 def run_qv_check() -> bool:
     print("=" * 70)
     print("       ABAI QUALITY VERIFICATION (QV / QC) AUDIT REPORT       ")
@@ -172,6 +247,15 @@ def run_qv_check() -> bool:
             print("  ❌ FAIL: Empirical summary metrics do not match Zabel et al. (2020) Ground Truth!")
             data_ok = False
 
+        # Every processed table is checked back against the raw OSDR record, not
+        # only the headline totals: a hand-typed fruit-tank column once passed
+        # this screen with almost every value wrong.
+        mismatches = verify_against_raw(rows, summary)
+        if mismatches:
+            for m in mismatches[:12]:
+                print(f"  ❌ FAIL: {m}")
+            data_ok = False
+
     if rng_violations:
         print(f"  ❌ FAIL: Found synthetic random generation pattern in source scripts: {rng_violations}")
         report["stages"]["numerical_traceability"] = {"passed": False, "rng_violations": rng_violations}
@@ -183,6 +267,7 @@ def run_qv_check() -> bool:
         print("  ✅ PASS: Zero synthetic/random fallbacks detected.")
         print(f"         Empirical Ground Truth verified across all {crops_count} crop evaluation cohorts.")
         print(f"         Facility stats verified: 268.0 kg total, 12.5 m² area, 286 mission days, 10 crew fed.")
+        print(f"         Crop yields, cycle lengths, both nutrient recipes and the harvest breakdowns match the raw OSDR record.")
         report["stages"]["numerical_traceability"] = {"passed": True, "crops_evaluated": crops_count}
 
     # -------------------------------------------------------------
